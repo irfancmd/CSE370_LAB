@@ -117,3 +117,10 @@ input[type=reset] {
 	height: 30px;
 	width: 50px;
 }
+
+.approve_button {
+	padding: 0px !important;
+	margin: 0px !important;
+	height: 30px;
+	width: 70px;
+}

@@ -27,20 +27,21 @@
 	</section>
 	
 	<section id = "section1">
-		<div class="title"> SIGN IN </div>
+		<div class="title"> Search Medicine </div>
 		
-		<form action="signin.php" class="form_design" method="post">
-			Email: <input type="text" name="email"> <br/>
-			Password: <input type="password" name="password"> <br/> <br/>
-			<input type="submit" value="Sign In">
+		<form action="search_medicine.php" class="form_design" method="post">
+			<input type="text" name="searchTerm" placeholder="Search"> <br/>
+			<!-- Add Spinner -->
+            <div>
+            <select name="requiresPrescription" style="margin-left: 35%;">
+              <option value="1">Prescription Required</option>
+              <option value="0">Prescription Not Required</option>
+            </select>
+      <input type="hidden" name="userId" value="<?php echo $_GET["userId"]?>"/>
+            </div> <br/><br/>
+
+			<input type="submit" value="Search"/>
 		</form>
-
-        <br/><br/>
-
-        <div>
-		    <div class="title"> Don't have an account? </div>
-            <input type="button" value="Register" onclick="location.href='registration_form.php'" style="margin: 5px 45.5%"/>
-        </div>
 
 	</section>
 

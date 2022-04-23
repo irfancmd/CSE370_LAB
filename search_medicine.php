@@ -19,33 +19,36 @@
 		<div class="row">  
 			<div class="col-md-2" style="font-size: 30px;"> Online Pharmacy </div>
 			<div class="col-md-10" style="text-align: right"> 
-				<!-- <a href="homepage.php"> Home </a>  -->
-				<a href="add_medicine_form.php" style="margin-left: 20px;"> Add Medicine </a> 
-				<a href="show_orders.php" style="margin-left: 20px;"> View Orders  </a> 
+				<!-- <a href="#"> Home </a> 
+				<a href="#" style="margin-left: 20px;"> Students </a> 
+				<a href="#" style="margin-left: 20px;"> Teachers  </a>  -->
 			</div>
 		</div>
 	</section>
 	
 	<section id = "section1">
-		<div class="title"> Welcome, <?php echo $_GET["userName"]?> ! </div>
-   
-    <!-- Medicine Table -->
-    <div class="container medicine_table">
+		<div class="title"> Search Result </div>
+
+        <div class="container medicine_table">
             <div class="row" style="padding: 5px;">
-                <div class="col-md-3">Name</div>
-                <div class="col-md-3">Vendor</div>
+                <div class="col-md-2">Name</div>
+                <div class="col-md-2">Vendor</div>
                 <div class="col-md-2">Chemical</div>
                 <div class="col-md-2">Price</div>
-                <div class="col-md-2">Edit</div>
+                <div class="col-md-2">Quantity</div>
+                <div class="col-md-2">Order</div>
             </div>
 
             <!-- Below, medicine infos will be added dynamically from the database -->
             
             <?php
 
+                $search_term = $_POST["searchTerm"];
+                $requires_prescription = $_POST["requiresPrescription"];
+
                 require_once("DBconnect.php");
 
-                $sql_query = "SELECT id, name, vendor, chemical, price FROM medicine";
+                $sql_query = "SELECT id, name, vendor, chemical, price FROM medicine WHERE name LIKE '%$search_term%' AND requires_prescription='$requires_prescription'";
                 $result = mysqli_query($connection, $sql_query);
 
                 if(mysqli_num_rows($result) != 0) {
@@ -53,14 +56,22 @@
             ?>
 
             <div class="row" style="padding: 5px;">
-                <div class="col-md-3"><?php echo $row[1] ?></div>
-                <div class="col-md-3"><?php echo $row[2] ?></div>
+                <div class="col-md-2"><?php echo $row[1] ?></div>
+                <div class="col-md-2"><?php echo $row[2] ?></div>
                 <div class="col-md-2"><?php echo $row[3] ?></div>
                 <div class="col-md-2"><?php echo $row[4] ?></div>
-                <div class="col-md-2">
-                  <input type="button" class="order_button" value="Edit" onclick="location.href='edit_medicine_form.php?medicineId=<?php echo $row[0] ?>'"/>
-                </div>
-            </div>     
+                <form action="insert_order.php" method="post">
+                    <div class="col-md-2">
+                        <input type="number" min="1" max="10" value="1" name="quantity"/>
+                    </div>
+                    <input type="hidden" value="<?php echo $row[0] ?>" name="medicineId"/>
+                    <input type="hidden" value="<?php echo $row[4] ?>" name="unitPrice"/>
+                    <input type="hidden" value="<?php echo $_POST["userId"] ?>" name="userId"/>
+                    <div class="col-md-2">
+                        <input type="submit" class="order_button" value="Order"/>
+                    </div>
+                </form>
+            </div>
                 
             <?php
                     }

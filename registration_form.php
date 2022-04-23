@@ -27,20 +27,17 @@
 	</section>
 	
 	<section id = "section1">
-		<div class="title"> SIGN IN </div>
+		<div class="title"> User Registration Form </div>
 		
-		<form action="signin.php" class="form_design" method="post">
+		<form action="insert_user.php" class="form_design" method="post">
+			First Name: <input type="text" name="firstName"> <br/>
+			Last Name: <input type="text" name="lastName"> <br/>
 			Email: <input type="text" name="email"> <br/>
-			Password: <input type="password" name="password"> <br/> <br/>
-			<input type="submit" value="Sign In">
+			Password: <input type="text" name="password"> <br/>
+			Address: <input type="text" name="address"> <br/><br/>
+
+			<input type="submit" value="Register"/>
 		</form>
-
-        <br/><br/>
-
-        <div>
-		    <div class="title"> Don't have an account? </div>
-            <input type="button" value="Register" onclick="location.href='registration_form.php'" style="margin: 5px 45.5%"/>
-        </div>
 
 	</section>
 
