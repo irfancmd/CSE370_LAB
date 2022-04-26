@@ -19,7 +19,7 @@ if(isset($_POST["id"]) && isset($_POST["name"]) && isset($_POST["vendor"]) && is
     if(mysqli_affected_rows($connection)) {
         echo "Update Successful!"; 
     } else {
-        echo "ERROR: Medicine insertion failed!";
+        echo "ERROR: Updating medicine failed!";
     }
 } else {
     echo "Not set";

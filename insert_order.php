@@ -18,7 +18,7 @@ if(isset($_POST["quantity"]) && isset($_POST["medicineId"]) && isset($_POST["uni
     if(mysqli_affected_rows($connection)) {
         echo("Order Successful!");
     } else {
-        echo "ERROR: User insertion failed!";
+        echo "ERROR: Order insertion failed!";
     }
 } else {
     echo "Not set";

@@ -16,7 +16,7 @@ if(isset($_POST["name"]) && isset($_POST["vendor"]) && isset($_POST["chemical"])
 
     // Check if insertion happened successfully
     if(mysqli_affected_rows($connection)) {
-        echo "The medicine has been added successfully!"
+        echo "The medicine has been added successfully!";
     } else {
         echo "ERROR: Medicine insertion failed!";
     }
